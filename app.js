@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
 const Visitor = require('../visitantes/model/visitor.model');
+const app = express();
 require('dotenv').config();
 
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
-  .then(() => console.log('Connected!'));
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/mongo-1', { useNewUrlParser: true })
+.then(() => console.log('Connected!'));
 
 app.get('/', (req, res) => {
 
