@@ -1,11 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Visitor = require('../visitantes/model/visitor.model');
+// const Visitor = require('../visitantes/model/visitor.model');
 const app = express();
 
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/mongo-1', { useNewUrlParser: true })
 .then(() => console.log('Connected!'));
+
+const visitorSchema = new mongoose.Schema(
+    { 
+        date: Date, 
+        name: 'string' 
+    });
+    
+let Visitor = mongoose.model('Visitor', visitorSchema);
+
 
 app.get('/', (req, res) => {
 
